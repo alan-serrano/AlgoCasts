@@ -18,6 +18,20 @@ function palindrome0(str) {
     }
 }
 
-const palindrome = palindrome0;
+/* Solution 1 */
+function palindrome1(str) {
+    const reversed = str.split('').reverse().join('');
+
+    return str === reversed;
+}
+
+/* Alternative Solution */
+function palindromeAlt(str) {
+    return str.split('').every( (char, i) => {
+        return char === str[str.length - i - 1];
+    } );
+}
+
+const palindrome = palindromeAlt;
 
 module.exports = palindrome;
