@@ -8,6 +8,32 @@
 //   reverseInt(-15) === -51
 //   reverseInt(-90) === -9
 
-function reverseInt(n) {}
+function reverseInt0(n) {
+    var numberToString, numberReversed;
+    if(n>=0) {
+
+        // convert the number to a string
+        numberToString = `${n}`;
+
+        // Reverse the string
+        reversed = numberToString.split('').reduce( (prev, current) => current + prev);
+
+        // Transform the string into a number
+        numberReversed = reversed * 1;
+    } else {
+        // convert the number to a string and make it positive
+        numberToString = `${-n}`;
+
+        //Reverse the string
+        reversed = numberToString.split('').reduce( (prev, current) => current + prev);
+
+        // Transform the stirng into a negative number
+        numberReversed = reversed * (-1);
+    }
+
+    return numberReversed;
+}
+
+const reverseInt = reverseInt0;
 
 module.exports = reverseInt;
