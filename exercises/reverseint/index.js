@@ -34,6 +34,16 @@ function reverseInt0(n) {
     return numberReversed;
 }
 
-const reverseInt = reverseInt0;
+/* Solution 1 */
+function reverseInt1(n) {
+    const reversed = n
+        .toString()
+        .split('')
+        .reverse()
+        .join('')
+    ;
 
-module.exports = reverseInt;
+    return parseInt(reversed) * Math.sign(n);
+}
+
+module.exports = reverseInt1;
