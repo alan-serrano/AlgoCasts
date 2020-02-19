@@ -8,7 +8,7 @@
 function maxChar(str) {
     //if the string is empty return null
     if(str.length === 0) return null;
-    
+
     // Initialize the max value
     var letters = {
         max: str[0]
@@ -31,4 +31,28 @@ function maxChar(str) {
     return letters.max;
 }
 
-module.exports = maxChar;
+/* Solution 1 of the video */
+function maxChar1(str) {
+    const charMap = {};
+    let max = 0;
+    let maxChar = '';
+
+    for (const char of str) {
+        if(charMap[char]) {
+            charMap[char]++;
+        } else {
+            charMap[char] = 1;
+        }
+    }
+    
+    for (const char in charMap) {
+        if (charMap[char] > max) {
+            max = charMap[char];
+            maxChar = char;
+        }
+    }
+
+    return maxChar;
+}
+
+module.exports = maxChar1;
