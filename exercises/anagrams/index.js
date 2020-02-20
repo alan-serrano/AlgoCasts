@@ -55,4 +55,44 @@ function anagrams(stringA, stringB) {
 
 }
 
-module.exports = anagrams;
+/* Solution of video */
+function anagrams1(stringA, stringB) {
+    const aCharMap = buildCharMap(stringA);
+    const bCharMap = buildCharMap(stringB);
+
+    if( Object.keys(aCharMap).length !== Object.keys(bCharMap).length ) {
+        return false;
+    }
+
+    for (const key in aCharMap) {
+        if ( aCharMap[key] !== bCharMap[key] ) return false;
+    }
+
+    return true;
+}
+
+function buildCharMap(str) {
+    const charMap = {};
+
+    for (const char of str.replace( /[^\w]/g, "" ).toLowerCase() ) {
+        charMap[char] = charMap[char] + 1 || 1;
+    }
+
+    return charMap;
+}
+
+/* Another Way to Tackle Anagrams */
+
+function anagrams2(stringA, stringB) {
+    return cleanString(stringA) === cleanString(stringB);
+}
+
+function cleanString(str) {
+    return str.replace(/[^\w]/g, '')
+        .toLowerCase()
+        .split('')
+        .sort()
+        .join('');
+}
+
+module.exports = anagrams2;
