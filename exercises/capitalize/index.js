@@ -37,4 +37,31 @@ function capitalizeA2(str) {
     return words.join(' ');
 }
 
-module.exports = capitalizeA2;
+/* Solution 1 of the video */
+
+function capitalize1(str) {
+    const words = [];
+
+    for ( const word of str.split(' ') ) {
+        words.push(word[0].toUpperCase() + word.slice(1));
+    }
+
+    return words.join(' ');
+}
+
+/* Solution 2 of the video */
+
+function capitalize2(str) {
+    let result = str[0].toUpperCase();
+
+    for(let i = 1; i < str.length; i++) {
+        if( str[ i - 1 ] === ' ' ) {
+            result += str[i].toUpperCase();
+        } else {
+            result += str[i];
+        }
+    }
+    return result;
+}
+
+module.exports = capitalize2;
