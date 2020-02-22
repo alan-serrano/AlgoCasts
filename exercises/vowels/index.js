@@ -31,4 +31,26 @@ function vowels(str) {
     return counter;
 }
 
-module.exports = vowels;
+/* Solution 1 of the video */
+
+function vowels1(str) {
+    let count = 0;
+    const checker = ['a', 'e', 'i', 'o', 'u'];
+
+    for (const char of str.toLowerCase()) {
+        if( checker.includes(char) ) {
+            count++;
+        }
+    }
+
+    return count;
+}
+
+/* Solution 2 of the video */
+
+function vowels2(str) {
+    const matches = str.match(/[aeiou]/gi);
+    return matches ? matches.length : 0;
+}
+
+module.exports = vowels2;
