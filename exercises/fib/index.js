@@ -37,4 +37,42 @@ function fibRecursive(n) {
     return fib(n-2) + fib(n-1);
 }
 
-module.exports = fibRecursive;
+/* Solution 1 of the video */
+function fib1(n) {
+    const result = [0, 1];
+
+    for (let i = 2; i <= n; i++) {
+        const a = result[i - 1];
+        const b = result[i - 2];
+
+        result.push(a + b);
+    }
+
+    return result[n];
+}
+
+/* Solution 2 recursively of the video */
+function memoize(fn) {
+    const cache = {};
+
+    return function (...args) {
+        if( cache[args] ) {
+            return cache[args];
+        }
+
+        const result = fn.apply(null, args);
+        cache[args] = result;
+
+        return result;
+    }
+}
+
+function fib2(n) {
+    if( n < 2 ) return n;
+
+    return fib2( n - 2 ) + fib2( n - 1 );
+}
+
+fib2 = memoize(fib2);
+
+module.exports = fib2;
