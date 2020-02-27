@@ -14,6 +14,50 @@
 
 const Stack = require('./stack');
 
-class Queue {}
+class Queue {
+    constructor() {
+        this.s1 = new Stack; // For adding
+        this.s2 = new Stack; // For removing or peeking
+    }
+
+    add(record) {
+        // If the elements are in the s2, moving to stack 1
+        if(this.s2.peek()) {
+            this.reverse();
+        }
+
+        this.s1.push(record);
+    }
+
+    remove() {
+        // If the elements are in the s1, moving to stack 2
+        if(this.s1.peek()) {
+            this.reverse();
+        }
+
+        return this.s2.pop();
+    }
+
+    peek() {
+        if(this.s1.peek()) {
+            this.reverse();
+        }
+
+        return this.s2.peek();
+    }
+
+    // Move elements between stacks
+    reverse() {
+        if( this.s2.peek() ) {
+            while( this.s2.peek() ) {
+                this.s1.push(this.s2.pop());
+            }
+        } else if( this.s1.peek() ) {
+            while( this.s1.peek() ) {
+                this.s2.push(this.s1.pop());
+            }
+        }
+    }
+}
 
 module.exports = Queue;
